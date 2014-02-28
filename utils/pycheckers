@@ -1,0 +1,10 @@
+#!/bin/bash
+FILE=$1
+
+# Test if folder exist
+if [ ! -e "$FILE" ]; then
+  FILE="/$1"
+fi
+pyflakes "$FILE"
+pep8 --ignore=E221,E701,E202,E501 --repeat "$FILE"
+true
