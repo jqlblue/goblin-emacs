@@ -42,8 +42,8 @@ Windows external keyboard from time to time."
       (setq mac-option-modifier 'meta)
       (message "Command is now bound to SUPER and Option is bound to META."))))
 
-(define-key goblin-mode-map (kbd "C-c w") 'goblin-swap-meta-and-super)
-(define-key goblin-mode-map (kbd "s-/") 'hippie-expand)
+(global-set-key (kbd "C-c w") 'goblin-swap-meta-and-super)
+(global-set-key (kbd "s-/") 'hippie-expand)
 
 (menu-bar-mode +1)
 

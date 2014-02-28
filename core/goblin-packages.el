@@ -53,7 +53,6 @@
     ac-slime
     slime
     org
-    org-plus-contrib
     php-mode)
   "A list of packages to ensure are installed at launch.")
 
