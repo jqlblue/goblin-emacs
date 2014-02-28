@@ -54,11 +54,15 @@ by Goblin.")
   "This directory houses packages that are not yet available in ELPA (or MELPA).")
 (defvar goblin-savefile-dir (expand-file-name "savefile" goblin-dir)
   "This folder stores all the automatically generated save/history-files.")
+(defvar goblin-tmp-dir (expand-file-name "tmp" goblin-dir)
+  "This folder stores all the automatically generated temporary files.")
 (defvar goblin-modules-file (expand-file-name "goblin-modules.el" goblin-dir)
   "This files contains a list of modules that will be loaded by Goblin.")
 
 (unless (file-exists-p goblin-savefile-dir)
   (make-directory goblin-savefile-dir))
+(unless (file-exists-p goblin-tmp-dir)
+  (make-directory goblin-tmp-dir))
 
 (defun goblin-add-subfolders-to-load-path (parent-dir)
  "Add all level PARENT-DIR subdirs to the `load-path'."
