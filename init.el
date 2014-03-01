@@ -63,6 +63,8 @@ by Goblin.")
   (make-directory goblin-savefile-dir))
 (unless (file-exists-p goblin-tmp-dir)
   (make-directory goblin-tmp-dir))
+(unless (file-exists-p goblin-personal-dir)
+  (make-directory goblin-personal-dir))
 
 (defun goblin-add-subfolders-to-load-path (parent-dir)
  "Add all level PARENT-DIR subdirs to the `load-path'."

@@ -83,7 +83,9 @@
   )
  ((string-equal system-type "darwin")   ; Mac OS X
   (progn
-    (add-to-list 'default-frame-alist '(font . "Monaco-14"))
+    (add-to-list 'default-frame-alist '(font . "Consolas-14"))
+    (set-fontset-font "fontset-default"
+	 'gb18030 '("Microsoft YaHei" . "unicode-bmp"))
     )
   )
  ((string-equal system-type "gnu/linux") ; linux
