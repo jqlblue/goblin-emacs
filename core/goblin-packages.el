@@ -52,8 +52,7 @@
     starter-kit
     ac-slime
     slime
-    org
-    php-mode)
+    org)
   "A list of packages to ensure are installed at launch.")
 
 (defun goblin-packages-installed-p ()
