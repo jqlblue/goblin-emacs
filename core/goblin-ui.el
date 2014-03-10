@@ -91,6 +91,8 @@
  ((string-equal system-type "gnu/linux") ; linux
   (progn
     (add-to-list 'default-frame-alist '(font . "Courier\ New-13")) )
+    (set-fontset-font "fontset-default"
+	 'gb18030 '("Microsoft YaHei" . "unicode-bmp"))
   )
  )
 

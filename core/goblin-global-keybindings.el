@@ -26,6 +26,8 @@
 ;; 02110-1301  USA
 
 ;;; Code:
+(global-set-key (kbd "C-<") 'beginning-of-buffer)
+(global-set-key (kbd "C->") 'end-of-buffer)
 
 ;; Align your code in a pretty way.
 (global-set-key (kbd "C-x \\") 'align-regexp)
@@ -124,6 +126,10 @@
 (global-set-key (kbd "C-c j") 'ace-jump-mode)
 (global-set-key (kbd "s-.") 'ace-jump-mode)
 
+;; tags
+(global-set-key (kbd "C-x C-M->") 'find-tag)
+(global-set-key (kbd "M-.") (kbd "C-x C-M-> <return>"))
+(global-set-key (kbd "C-x C-g") 'pop-tag-mark)
 (provide 'goblin-global-keybindings)
 
 ;;; goblin-global-keybindings.el ends here
