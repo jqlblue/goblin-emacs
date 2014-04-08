@@ -69,8 +69,8 @@
   ;; 设置php-tokens
   (require 'php-tokens)
 
-  (setq php-mode-force-pear 1)
-  (setq imenu-auto-rescan 1)
+  ;(setq php-mode-force-pear 1)
+  ;(setq imenu-auto-rescan 1)
 
   (setq-default tab-width 4)
   (setq-default indent-tabs-mode nil)  ;用空格代替tab
@@ -91,7 +91,7 @@
   (c-set-style "K&R")
   ;; 自动模式，在此种模式下当你键入{时，会自动根据你设置的对齐风格对齐
   (c-toggle-auto-state)
-  (c-toggle-electric-state 0)
+  (c-toggle-electric-state 1)
   ;; 此模式下，当按Backspace时会删除最多的空格
   (c-toggle-hungry-state)
   ;; TAB键的宽度设置为4
