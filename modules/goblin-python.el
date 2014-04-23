@@ -29,6 +29,7 @@
 ;(setq py-install-directory "~/.emacs.d/python-mode-6.0.11")
 ;(add-to-list 'load-path py-install-directory)
 
+(require 'python-mode)
 (autoload 'jedi:setup "jedi" nil t)
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:setup-keys t)                      ; optional

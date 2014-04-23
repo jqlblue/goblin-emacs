@@ -50,6 +50,7 @@
     epc
     jedi
     php-mode
+    python-mode
     nginx-mode
     starter-kit
     ac-slime
