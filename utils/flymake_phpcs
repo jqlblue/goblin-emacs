@@ -14,7 +14,6 @@ Run phpcs and \"php -l\" on <source-file> in a manner appropriate for use by Ema
 }
 
 FILE_NAME="$1"
-shift
 
 # Run with --report=emacs so we can use this for compile-mode too.
 #phpcs --standard=ZEND --report=emacs "$FILE_NAME" $*

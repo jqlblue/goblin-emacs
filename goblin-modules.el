@@ -27,10 +27,10 @@
 
 (require 'goblin-ido)
 (require 'goblin-auto-complete)
-(require 'goblin-flymake)
-(require 'goblin-doxymacs)
 (require 'goblin-php)
 (require 'goblin-python)
+(require 'goblin-flymake)
+(require 'goblin-doxymacs)
 (require 'goblin-vc)
 (require 'goblin-org-mode)
 (load "goblin-slime")

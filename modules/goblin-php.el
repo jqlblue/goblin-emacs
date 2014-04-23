@@ -37,7 +37,7 @@
   (defun php-run ()
 	(interactive)
 	(shell-command
-	 (concat "php -q \"" (buffer-file-name) "\"")))
+   (concat "php -q \"" (buffer-file-name) "\"")))
   (defun php-check ()
 	(interactive)
 	(let ((compilation-error-regexp-alist '(php))
@@ -69,8 +69,8 @@
   ;; 设置php-tokens
   (require 'php-tokens)
 
-  ;(setq php-mode-force-pear 1)
-  ;(setq imenu-auto-rescan 1)
+  (setq php-mode-force-pear 1)
+  (setq imenu-auto-rescan 1)
 
   (setq-default tab-width 4)
   (setq-default indent-tabs-mode nil)  ;用空格代替tab

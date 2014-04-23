@@ -30,15 +30,17 @@
 ;; It will still run on save or hitting return.
 (setq flymake-no-changes-timeout 5)
 ;; Disable in-place checking, and tell it to use ~/.emacs.d/tmp/ for the temp files.
-(setq flymake-run-in-place nil)
+
 (setq temporary-file-directory "~/.emacs.d/tmp/")
+(setq flymake-run-in-place nil)
+
 ;; Only need these two if you plan to debug Flymake.
 (setq flymake-log-file-name (concat temporary-file-directory "flymake.log"))
 (setq flymake-log-level -1)
 ;; Tune how many checks can run in parallel, default of 4 should be fine.
 ;(setq flymake-max-parallel-syntax-checks 1)
 (setq flymake-number-of-errors-to-display 4)
-(setq flymake-max-parallel-syntax-checks nil)
+(setq flymake-max-parallel-syntax-checks 1)
 
 ;; pyflakes
 ;; adapted from http://plope.com/Members/chrism/flymake-mode
@@ -63,38 +65,44 @@
          (temp-name (make-temp-file name nil ext))
          )
     (flymake-log 3 "create-temp-intemp: file=%s temp=%s"
-   file-name temp-name)
+                 file-name temp-name)
     temp-name))
 
 (when (load "flymake" t)
   (defun flymake-pyflakes-init ()
     (let* ((temp-file (flymake-init-create-temp-buffer-copy
-         'flymake-create-temp-intemp))
-    (local-file (file-relative-name
-   temp-file
-   (file-name-directory buffer-file-name))))
-      (flymake-log 3 "flymake-pyflakes-init: dir=%s %s"
-     buffer-file-name (file-name-directory temp-file))
-      (list "~/.emacs.d/utils/pycheckers" (list local-file)
-     (file-name-directory temp-file))))
+                       'flymake-create-temp-intemp))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+      (flymake-log 3 "flymake-pyflakes-init: dir=%s %s %s %s %s"
+                   buffer-file-name (file-name-directory temp-file) temp-file local-file (list local-file))
+      (list "~/.emacs.d/utils/pycheckers" (list temp-file)
+            (file-name-directory temp-file))))
 
   (defun flymake-php-init ()
     (let* ((temp-file (flymake-init-create-temp-buffer-copy
-         'flymake-create-temp-intemp))
-    (local-file (file-relative-name
-   temp-file
-   (file-name-directory buffer-file-name))))
-      (flymake-log 3 "flymake-pyflakes-init: dir=%s %s"
-     buffer-file-name (file-name-directory temp-file))
-      (list "~/.emacs.d/utils/flymake_phpcs" (list local-file)
-     (file-name-directory temp-file))))
+                       'flymake-create-temp-intemp))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+      (flymake-log 3 "flymake-pyflakes-init: dir=%s %s %s %s %s"
+                   buffer-file-name (file-name-directory temp-file) temp-file local-file (list local-file))
+      (list "~/.emacs.d/utils/flymake_phpcs" (list temp-file)
+            (file-name-directory temp-file))))
 
 
   (add-to-list 'flymake-allowed-file-name-masks
-        '("\\.py\\'" flymake-pyflakes-init))
+               '("\\.py\\'" flymake-pyflakes-init))
+
   (delete '("\\.html?\\'" flymake-xml-init) flymake-allowed-file-name-masks)
+
   (add-to-list 'flymake-allowed-file-name-masks
-               '("\\.php\\'" flymake-php-init)))
+               '("\\.php\\'"
+                 flymake-php-init))
+
+  (add-to-list 'flymake-err-line-patterns
+               '("\\(Parse\\|Fatal\\) error: \\(.*?\\) in \\(.*?\\) on line \\([0-9]+\\)" 3 4 nil 2)))
 
 (add-hook 'find-file-hook 'flymake-find-file-hook)
 

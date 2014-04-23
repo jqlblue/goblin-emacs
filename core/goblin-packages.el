@@ -49,6 +49,8 @@
     color-theme-solarized
     epc
     jedi
+    php-mode
+    nginx-mode
     starter-kit
     ac-slime
     slime
