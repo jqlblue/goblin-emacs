@@ -310,6 +310,14 @@ indent yanked text (with prefix arg don't indent)."
 (setq display-time-day-and-date t)
 (display-time)
 
+;; sr speedbar
+
+(setq speedbar-use-images nil)
+(global-set-key (kbd "<f2>") (lambda()
+                               (interactive)
+                               (sr-speedbar-toggle)))
+
+
 (provide 'goblin-editor)
 
 ;;; goblin-editor.el ends here

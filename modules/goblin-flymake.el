@@ -28,6 +28,7 @@
 ;; Set up flymake-mode
 ;; Static analysis can be slow, so only run flymake if I've not been typing for 5 seconds.
 ;; It will still run on save or hitting return.
+
 (setq flymake-no-changes-timeout 5)
 ;; Disable in-place checking, and tell it to use ~/.emacs.d/tmp/ for the temp files.
 
@@ -93,9 +94,9 @@
 
 
   (add-to-list 'flymake-allowed-file-name-masks
-               '("\\.py\\'" flymake-pyflakes-init))
+                '("\\.py\\'" flymake-pyflakes-init))
 
-  (delete '("\\.html?\\'" flymake-xml-init) flymake-allowed-file-name-masks)
+  ;; (delete '("\\.html?\\'" flymake-xml-init) flymake-allowed-file-name-masks)
 
   (add-to-list 'flymake-allowed-file-name-masks
                '("\\.php\\'"
@@ -104,7 +105,7 @@
   (add-to-list 'flymake-err-line-patterns
                '("\\(Parse\\|Fatal\\) error: \\(.*?\\) in \\(.*?\\) on line \\([0-9]+\\)" 3 4 nil 2)))
 
-(add-hook 'find-file-hook 'flymake-find-file-hook)
+;(add-hook 'find-file-hook 'flymake-find-file-hook)
 
 (add-hook 'python-mode-hook 'flymake-mode)
 (add-hook 'php-mode-hook 'flymake-mode)

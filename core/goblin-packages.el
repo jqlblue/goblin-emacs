@@ -55,7 +55,8 @@
     starter-kit
     ac-slime
     slime
-    org)
+    org
+    sr-speedbar)
   "A list of packages to ensure are installed at launch.")
 
 (defun goblin-packages-installed-p ()
