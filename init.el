@@ -80,6 +80,7 @@ by Goblin.")
 (add-to-list 'load-path goblin-core-dir)
 (add-to-list 'load-path goblin-modules-dir)
 (add-to-list 'load-path goblin-extensions-dir)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (goblin-add-subfolders-to-load-path goblin-extensions-dir)
 
 ;; reduce the frequency of garbage collection by making it happen on
@@ -123,5 +124,7 @@ by Goblin.")
 (goblin-eval-after-init
  ;; greet the use with some useful tip
  (run-at-time 5 nil 'goblin-tip-of-the-day))
+
+
 
 ;;; init.el ends here

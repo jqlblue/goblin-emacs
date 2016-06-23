@@ -50,12 +50,21 @@
     epc
     jedi
     php-mode
+    web-mode
     python-mode
     nginx-mode
     starter-kit
     ac-slime
     slime
     org
+    rust-mode
+    racer
+    flycheck
+    flycheck-rust
+    cargo
+    company
+    company-racer
+    rustfmt
     sr-speedbar)
   "A list of packages to ensure are installed at launch.")
 

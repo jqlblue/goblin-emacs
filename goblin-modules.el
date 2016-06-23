@@ -28,9 +28,12 @@
 (require 'goblin-ido)
 (require 'goblin-auto-complete)
 (require 'goblin-php)
+(require 'goblin-web)
 (require 'goblin-python)
 (require 'goblin-flymake)
 (require 'goblin-doxymacs)
 (require 'goblin-vc)
 (require 'goblin-org-mode)
+(require 'goblin-rust)
+
 (load "goblin-slime")
