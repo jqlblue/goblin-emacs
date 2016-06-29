@@ -35,10 +35,10 @@
 (setq exec-path (append exec-path '("/usr/local/bin" "~/.cargo/bin")))
 
 ;; Reduce the time after which the company auto completion popup opens
-(setq company-idle-delay 0.2)
+(setq company-idle-delay 0.1)
 
 ;; Reduce the number of characters before company kicks in
-(setq company-minimum-prefix-length 1)
+(setq company-minimum-prefix-length 2)
 
 ;; Set path to racer binary
 (setq racer-cmd "~/.cargo/bin/racer")
@@ -50,9 +50,9 @@
 ;; Load rust-mode when you open `.rs` files
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 
-(require 'company-racer)
-(with-eval-after-load 'company
-  (add-to-list 'company-backends 'company-racer))
+;; (require 'company-racer)
+;; (with-eval-after-load 'company
+;;   (add-to-list 'company-backends 'company-racer))
 
 (unless (getenv "RUST_SRC_PATH")
   (setenv "RUST_SRC_PATH" (expand-file-name "~/.rust/src")))
@@ -66,6 +66,12 @@
 
 	;(add-hook 'after-init-hook #'global-flycheck-mode)
 ;; Setting up configurations when you load rust-mode
+
+(with-eval-after-load 'company
+  (define-key company-active-map (kbd "M-n") nil)
+  (define-key company-active-map (kbd "M-p") nil)
+  (define-key company-active-map (kbd "C-n") #'company-select-next)
+  (define-key company-active-map (kbd "C-p") #'company-select-previous))
 
 (defun indent-buffer ()
   "Indent current buffer according to major mode."
