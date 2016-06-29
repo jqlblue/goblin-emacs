@@ -64,6 +64,12 @@
     cargo
     company
     company-racer
+    company-php 
+    company-web 
+    company-restclient
+    elpy
+    company-web 
+    ac-php 
     rustfmt
     sr-speedbar)
   "A list of packages to ensure are installed at launch.")
