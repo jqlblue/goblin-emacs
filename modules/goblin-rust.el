@@ -40,12 +40,6 @@
 ;; Reduce the number of characters before company kicks in
 (setq company-minimum-prefix-length 2)
 
-;; Set path to racer binary
-(setq racer-cmd "~/.cargo/bin/racer")
-(setq rustfmt-bin "~/.cargo/bin/rustfmt")
-
-;; Set path to rust src directory
-(setq racer-rust-src-path "~/.rust/src")
 
 ;; Load rust-mode when you open `.rs` files
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
@@ -55,7 +49,7 @@
 ;;   (add-to-list 'company-backends 'company-racer))
 
 (unless (getenv "RUST_SRC_PATH")
-  (setenv "RUST_SRC_PATH" (expand-file-name "~/.rust/src")))
+  (setenv "RUST_SRC_PATH" "~/.rust/rustc-1.13.0/src"))
 
 (add-hook 'rust-mode-hook  #'racer-mode)
 (add-hook 'rust-mode-hook  #'flycheck-mode)
@@ -80,9 +74,15 @@
 
 (add-hook 'rust-mode-hook
           '(lambda ()
-             
              (define-key rust-mode-map (kbd "C-c C-f") #'rustfmt-format-buffer)
-            
+
+             ;; Set path to racer binary
+             (setq racer-cmd (concat (getenv "HOME") "/.cargo/bin/racer"))
+             (setq rustfmt-bin (concat (getenv "HOME") "/.cargo/bin/rustfmt"))
+
+             ;; Set path to rust src directory
+             (setq racer-rust-src-path (concat (getenv "HOME") "/.rust/rustc-1.13.0/src"))
+             
              ;; Use flycheck-rust in rust-mode
              (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
              
@@ -94,6 +94,7 @@
              
              ;; Key binding to auto complete and indent
              (local-set-key (kbd "TAB") #'company-indent-or-complete-common)
+             (electric-pair-mode 1)
              ))
 
 (provide 'goblin-rust)

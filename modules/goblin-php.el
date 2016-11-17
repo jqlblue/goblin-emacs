@@ -28,7 +28,7 @@
 ;;; Code:
 
 (require 'php-mode)
-(require 'php-doc)
+;(require 'php-doc)
 
 (eval-after-load 'php-mode
   '(require 'php-ext))

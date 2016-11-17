@@ -27,8 +27,8 @@
 
 ;;; Code:
 
-(require 'thingatpt)
-(require 'dash)
+;(require 'thingatpt)
+;(require 'dash)
 
 (defun goblin-open-with (arg)
   "Open visited file in default external program.
@@ -438,7 +438,7 @@ Doesn't mess with special buffers."
   (exchange-point-and-mark)
   (deactivate-mark nil))
 
-(require 'epl)
+;(require 'epl)
 
 (defun goblin-update ()
   "Update Goblin to its latest version."

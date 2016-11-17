@@ -38,22 +38,17 @@
 (package-initialize)
 
 (defvar goblin-packages
-  '(ace-jump-mode
-    ack-and-a-half
+  '(sr-speedbar
     diminish
     browse-kill-ring
-    expand-region
     projectile
     undo-tree
     auto-complete
-    color-theme-solarized
-    epc
-    jedi
+    helm
     php-mode
     web-mode
     python-mode
     nginx-mode
-    starter-kit
     ac-slime
     slime
     org
@@ -64,14 +59,14 @@
     cargo
     company
     company-racer
-    company-php 
-    company-web 
+    company-php
+    company-web
     company-restclient
     elpy
-    company-web 
-    ac-php 
+    company-web
+    ac-php
     rustfmt
-    sr-speedbar)
+    )
   "A list of packages to ensure are installed at launch.")
 
 (defun goblin-packages-installed-p ()

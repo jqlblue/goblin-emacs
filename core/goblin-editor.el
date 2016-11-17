@@ -176,7 +176,7 @@ Will only occur if goblin-whitespace is also enabled."
 ;; enable erase-buffer command
 (put 'erase-buffer 'disabled nil)
 
-(require 'expand-region)
+;(require 'expand-region)
 
 ;; projectile is a project management mode
 (require 'projectile)

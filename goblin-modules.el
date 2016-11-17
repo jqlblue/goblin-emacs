@@ -25,8 +25,10 @@
 ;; Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 ;; 02110-1301  USA
 
-(require 'goblin-ido)
+(require 'goblin-helm)
+(require 'goblin-helm-everywhere)
 (require 'goblin-auto-complete)
+
 (require 'goblin-php)
 (require 'goblin-web)
 (require 'goblin-python)
