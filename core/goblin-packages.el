@@ -66,6 +66,7 @@
     company-web
     ac-php
     rustfmt
+    let-alist
     )
   "A list of packages to ensure are installed at launch.")
 

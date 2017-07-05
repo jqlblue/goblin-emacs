@@ -5,7 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (rust-mode racer yaml-mode markdown-mode php-mode undo-tree sr-speedbar helm-projectile helm-descbinds helm-ag flx-ido diminish dash browse-kill-ring auto-complete))))
+    (jedi rust-mode racer yaml-mode markdown-mode php-mode undo-tree sr-speedbar helm-projectile helm-descbinds helm-ag flx-ido diminish dash browse-kill-ring auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

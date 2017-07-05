@@ -25,7 +25,7 @@
 ;; Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 ;; 02110-1301  USA
 
-;(setq jedi:server-command '("/home/galendy/apps/pythonbrew/pythons/Python-2.7.3/bin/python" "~/.emacs.d/elpa/jedi-0.1.2/jediepcserver.py"))
+(setq jedi:server-command '("/usr/bin/python" "/Users/gaoyuan/.emacs.d/elpa/jedi-core-20170121.610/jediepcserver.py"))
 ;(setq py-install-directory "~/.emacs.d/python-mode-6.0.11")
 ;(add-to-list 'load-path py-install-directory)
 
