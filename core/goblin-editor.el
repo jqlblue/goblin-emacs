@@ -287,6 +287,8 @@ indent yanked text (with prefix arg don't indent)."
 (global-undo-tree-mode)
 (diminish 'undo-tree-mode)
 
+(require 'iedit)
+
 ;; enable winner-mode to manage window configurations
 (winner-mode +1)
 

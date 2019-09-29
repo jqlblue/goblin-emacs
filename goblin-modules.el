@@ -37,5 +37,6 @@
 (require 'goblin-vc)
 (require 'goblin-org-mode)
 (require 'goblin-rust)
+(require 'goblin-go)
 
 (load "goblin-slime")

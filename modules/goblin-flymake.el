@@ -93,8 +93,8 @@
             (file-name-directory temp-file))))
 
 
-  (add-to-list 'flymake-allowed-file-name-masks
-                '("\\.py\\'" flymake-pyflakes-init))
+  ;(add-to-list 'flymake-allowed-file-name-masks
+                ;'("\\.py\\'" flymake-pyflakes-init))
 
   ;; (delete '("\\.html?\\'" flymake-xml-init) flymake-allowed-file-name-masks)
 
@@ -107,7 +107,7 @@
 
 ;(add-hook 'find-file-hook 'flymake-find-file-hook)
 
-(add-hook 'python-mode-hook 'flymake-mode)
+;(add-hook 'python-mode-hook 'flymake-mode)
 (add-hook 'php-mode-hook 'flymake-mode)
 
 (defun my-flymake-show-help ()

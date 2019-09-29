@@ -25,15 +25,24 @@
 ;; Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 ;; 02110-1301  USA
 
-(setq jedi:server-command '("/usr/bin/python" "/Users/gaoyuan/.emacs.d/elpa/jedi-core-20170121.610/jediepcserver.py"))
+;(setq jedi:server-command '("/usr/bin/python" "/Users/gaoyuan/.emacs.d/elpa/jedi-core-20170121.610/jediepcserver.py"))
 ;(setq py-install-directory "~/.emacs.d/python-mode-6.0.11")
 ;(add-to-list 'load-path py-install-directory)
 
 (require 'python-mode)
-(autoload 'jedi:setup "jedi" nil t)
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:setup-keys t)                      ; optional
-(setq jedi:complete-on-dot t)                 ; optional
+;(autoload 'jedi:setup "jedi" nil t)
+;(add-hook 'python-mode-hook 'jedi:setup)
+;(setq jedi:setup-keys t)                      ; optional
+;(setq jedi:complete-on-dot t)                 ; optional
 
 (elpy-enable)
+
+;(when (require 'flycheck nil t)
+  ;(setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+  ;(add-hook 'elpy-mode-hook 'flycheck-mode))
+;; enable autopep8 formatting on save
+
+(require 'py-autopep8)
+(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+
 (provide 'goblin-python)

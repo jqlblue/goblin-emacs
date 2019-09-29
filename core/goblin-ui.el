@@ -72,7 +72,8 @@
                                           "%b"))))
 
 ;; use solarized as the default theme
-(load-theme 'solarized-dark t)
+;(load-theme 'solarized-dark t)
+(load-theme 'material t)
 
 ;; font
 ;; set font

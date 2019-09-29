@@ -49,7 +49,7 @@
 ;;   (add-to-list 'company-backends 'company-racer))
 
 (unless (getenv "RUST_SRC_PATH")
-  (setenv "RUST_SRC_PATH" "~/.rust/rustc-1.13.0/src"))
+  (setenv "RUST_SRC_PATH" "~/.rust/rust/src"))
 
 (add-hook 'rust-mode-hook  #'racer-mode)
 (add-hook 'rust-mode-hook  #'flycheck-mode)
@@ -81,7 +81,7 @@
              (setq rustfmt-bin (concat (getenv "HOME") "/.cargo/bin/rustfmt"))
 
              ;; Set path to rust src directory
-             (setq racer-rust-src-path (concat (getenv "HOME") "/.rust/rustc-1.13.0/src"))
+             (setq racer-rust-src-path (concat (getenv "HOME") "/.rust/rust/src"))
              
              ;; Use flycheck-rust in rust-mode
              (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
