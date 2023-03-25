@@ -31,7 +31,7 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(package-initialize)
+;;(package-initialize)
 
 (defvar current-user
       (getenv
@@ -39,8 +39,11 @@
 
 (message "Goblin Emacs is powering up... Be patient, Master %s!" current-user)
 
-(when (version< emacs-version "24.1")
-  (error "Goblin requires at least GNU Emacs 24.1"))
+(when (version< emacs-version "28.1")
+  (error "Goblin requires at least GNU Emacs 28.1"))
+
+;; Always load newest byte code
+(setq load-prefer-newer t)
 
 (defvar goblin-dir (file-name-directory load-file-name)
   "The root dir of the Emacs Goblin distribution.")
@@ -61,51 +64,60 @@ by Goblin.")
   "This directory houses packages that are not yet available in ELPA (or MELPA).")
 (defvar goblin-savefile-dir (expand-file-name "savefile" goblin-dir)
   "This folder stores all the automatically generated save/history-files.")
-(defvar goblin-tmp-dir (expand-file-name "tmp" goblin-dir)
-  "This folder stores all the automatically generated temporary files.")
+;;(defvar goblin-tmp-dir (expand-file-name "tmp" goblin-dir)
+;;  "This folder stores all the automatically generated temporary files.")
 (defvar goblin-modules-file (expand-file-name "goblin-modules.el" goblin-dir)
   "This files contains a list of modules that will be loaded by Goblin.")
 
 (unless (file-exists-p goblin-savefile-dir)
   (make-directory goblin-savefile-dir))
-(unless (file-exists-p goblin-tmp-dir)
-  (make-directory goblin-tmp-dir))
-(unless (file-exists-p goblin-personal-dir)
-  (make-directory goblin-personal-dir))
+;;(unless (file-exists-p goblin-tmp-dir)
+;;  (make-directory goblin-tmp-dir))
+;;(unless (file-exists-p goblin-personal-dir)
+;;  (make-directory goblin-personal-dir))
 
 (defun goblin-add-subfolders-to-load-path (parent-dir)
  "Add all level PARENT-DIR subdirs to the `load-path'."
  (dolist (f (directory-files parent-dir))
    (let ((name (expand-file-name f parent-dir)))
      (when (and (file-directory-p name)
-                (not (equal f ".."))
-                (not (equal f ".")))
+                (not (string-prefix-p "." f)))
        (add-to-list 'load-path name)
        (goblin-add-subfolders-to-load-path name)))))
 
 ;; add Goblin's directories to Emacs's `load-path'
 (add-to-list 'load-path goblin-core-dir)
 (add-to-list 'load-path goblin-modules-dir)
-(add-to-list 'load-path goblin-extensions-dir)
+(add-to-list 'load-path goblin-vendor-dir)
+(goblin-add-subfolders-to-load-path goblin-vendor-dir)
+;;(add-to-list 'load-path goblin-extensions-dir)
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(goblin-add-subfolders-to-load-path goblin-extensions-dir)
+;;(goblin-add-subfolders-to-load-path goblin-extensions-dir)
 
 ;; reduce the frequency of garbage collection by making it happen on
 ;; each 50MB of allocated data (the default is on every 0.76MB)
 (setq gc-cons-threshold 50000000)
 
+;; warn when opening files bigger than 100MB
+(setq large-file-warning-threshold 100000000)
+
+(setq inhibit-startup-message t) ; Don't show the splash screen
+(setq visible-bell t)            ; Flash when the bell rings
+
 ;; preload the personal settings from `goblin-preload-dir'
-(when (file-exists-p goblin-preload-dir)
-  (message "Loading preload configuration files in %s..." goblin-preload-dir)
-  (mapc 'load (directory-files goblin-preload-dir 't "^[^#].*el$")))
+;;(when (file-exists-p goblin-preload-dir)
+;;  (message "Loading preload configuration files in %s..." goblin-preload-dir)
+;;  (mapc 'load (directory-files goblin-preload-dir 't "^[^#].*el$")))
 
 (message "Loading Goblin's core...")
 
 ;; the core stuff
 (require 'goblin-packages)
+(require 'goblin-custom)
 (require 'goblin-ui)
 (require 'goblin-core)
 (require 'goblin-editor)
+(require 'goblin-lang)
 (require 'goblin-global-keybindings)
 
 ;; OSX specific settings
@@ -118,6 +130,14 @@ by Goblin.")
 (when (file-exists-p goblin-modules-file)
   (load goblin-modules-file))
 
+
+;; (if (file-exists-p prelude-modules-file)
+;;     (load prelude-modules-file)
+;;   (message "[Prelude] Missing personal modules file %s" prelude-modules-file)
+;;   (message "[Prelude] Falling back to the bundled example file sample/prelude-modules.el")
+;;   (message "[Prelude] You should copy this file to your personal configuration folder and tweak it to your liking")
+;;   (load (expand-file-name "sample/prelude-modules.el" prelude-dir)))
+
 ;; config changes made through the customize UI will be store here
 (setq custom-file (expand-file-name "custom.el" goblin-personal-dir))
 
@@ -128,9 +148,9 @@ by Goblin.")
 
 (message "Goblin is ready to do thy bidding, Master %s!" current-user)
 
-(goblin-eval-after-init
+;(goblin-eval-after-init
  ;; greet the use with some useful tip
- (run-at-time 5 nil 'goblin-tip-of-the-day))
+; (run-at-time 5 nil 'goblin-tip-of-the-day))
 
 
 ;; Use UTF-8 for all character encoding.
@@ -139,7 +159,6 @@ by Goblin.")
 ;; (set-selection-coding-system 'utf-8)
 ;; (set-locale-environment "en.UTF-8")
 ;; (prefer-coding-system 'utf-8)
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ENCODING ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C-h C RET

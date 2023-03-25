@@ -1,0 +1,6 @@
+[submodule "extensions/vendor/lsp-bridge"]
+	path = extensions/vendor/lsp-bridge
+	url = https://github.com/manateelazycat/lsp-bridge.git
+[submodule "extensions/lsp-server/phpactor"]
+	path = extensions/lsp-server/phpactor
+	url = git@github.com:phpactor/phpactor

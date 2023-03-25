@@ -30,20 +30,59 @@
 (require 'php-mode)
 ;(require 'php-doc)
 
-(eval-after-load 'php-mode
-  '(require 'php-ext))
+;; (eval-after-load 'php-mode
+;;   '(require 'php-ext))
 
-(add-hook 'php-mode-hook
-          '(lambda ()
-             (require 'company-php)
-             (company-mode t)
-             (add-to-list 'company-backends 'company-ac-php-backend )))
+;; (add-hook 'php-mode-hook
+;;           '(lambda ()
+;;              (require 'company-php)
+;;              (company-mode t)
+;;              (add-to-list 'company-backends 'company-ac-php-backend )))
 
-(with-eval-after-load 'company
-  (define-key company-active-map (kbd "M-n") nil)
-  (define-key company-active-map (kbd "M-p") nil)
-  (define-key company-active-map (kbd "C-n") #'company-select-next)
-  (define-key company-active-map (kbd "C-p") #'company-select-previous))
+;; (with-eval-after-load 'company
+;;   (define-key company-active-map (kbd "M-n") nil)
+;;   (define-key company-active-map (kbd "M-p") nil)
+;;   (define-key company-active-map (kbd "C-n") #'company-select-next)
+;;   (define-key company-active-map (kbd "C-p") #'company-select-previous))
+
+;; ;; (add-hook 'php-mode-hook 'eglot-ensure)
+
+;; ;; (with-eval-after-load "eglot"
+;; ;;   (add-to-list 'eglot-server-programs '(php-mode "/Users/gaoyuan/.nvm/versions/node/v16.16.0/bin/intelephense" "--stdio"))
+;; ;;   (add-to-list 'eglot-stay-out-of 'eldoc)
+;; ;;   (with-eval-after-load "php-mode"
+;; ;;     (define-key php-mode-map (kbd "<f5>") #'eldoc-box-eglot-help-at-point)))
+
+;; (with-eval-after-load "eglot"
+;;   (add-to-list 'eglot-server-programs '(php-mode "intelephense" "--stdio"))
+;;   (add-hook 'php-mode-hook 'eglot-ensure))
+
+
+;; (use-package php-mode
+;;   :defer t)
+;; (require 'lsp-bridge)
+(defun init-php-mode ()
+  (lsp-bridge-mode +1))
+
+(with-eval-after-load "php-mode"
+  (define-key php-mode-map (kbd "C-.") nil)
+  (setq lsp-bridge-php-lsp-server "phpactor")
+
+  (add-hook 'php-mode-hook (lambda ()
+                            (lsp-bridge-mode +1)
+                             (c-toggle-auto-newline 1))))
+;; (require 'lsp-bridge)
+
+;; (defun init-php-mode ()
+;;   (lsp-bridge-mode +1))
+
+;; (with-eval-after-load 'php-mode
+;;   (custom-set-variables '(lsp-bridge-php-lsp-server . "phpactor"))
+;;   (add-hook 'php-mode-hook #'init-php-mode))
+
+;; (with-eval-after-load "eglot"
+;;   (add-to-list 'eglot-server-programs '(php-mode "intelephense" "--stdio"))
+;;   (add-hook 'php-mode-hook 'eglot-ensure))
 
 (provide 'goblin-php)
 

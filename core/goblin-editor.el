@@ -113,7 +113,7 @@ Will only occur if goblin-whitespace is also enabled."
 (setq blink-matching-paren nil)
 
 ;; diminish keeps the modeline tidy
-(require 'diminish)
+;; (require 'diminish)
 
 ;; meaningful names for buffers with the same name
 (require 'uniquify)
@@ -179,11 +179,11 @@ Will only occur if goblin-whitespace is also enabled."
 ;(require 'expand-region)
 
 ;; projectile is a project management mode
-(require 'projectile)
-(setq projectile-cache-file (expand-file-name  "projectile.cache" goblin-savefile-dir))
-(add-hook 'php-mode-hook #'(lambda () (projectile-mode)))
-(add-hook 'python-mode-hook #'(lambda () (projectile-mode)))
-(diminish 'projectile-mode "Prjl")
+;; (require 'projectile)
+;; (setq projectile-cache-file (expand-file-name  "projectile.cache" goblin-savefile-dir))
+;; (add-hook 'php-mode-hook #'(lambda () (projectile-mode)))
+;; (add-hook 'python-mode-hook #'(lambda () (projectile-mode)))
+;; (diminish 'projectile-mode "Prjl")
 
 ;; shorter aliases for ack-and-a-half commands
 (defalias 'ack 'ack-and-a-half)
@@ -281,13 +281,13 @@ indent yanked text (with prefix arg don't indent)."
       (expand-file-name "semanticdb" goblin-savefile-dir))
 
 ;; enable Goblin's keybindings
-;(goblin-global-mode t)
+;; (goblin-global-mode t)
 
 ;; sensible undo
 (global-undo-tree-mode)
-(diminish 'undo-tree-mode)
+ (diminish 'undo-tree-mode)
 
-(require 'iedit)
+;(require 'iedit)
 
 ;; enable winner-mode to manage window configurations
 (winner-mode +1)

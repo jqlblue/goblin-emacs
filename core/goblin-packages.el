@@ -26,53 +26,130 @@
 ;; 02110-1301  USA
 
 ;;; Code:
-(require 'cl)
+;; (require 'cl)
+;; (require 'package)
+
+;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+;; (add-to-list 'package-archives '("ELPA" . "http://tromey.com/elpa/") t)
+;; (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+;; ;; set package-user-dir to be relative to Goblin install path
+;; (setq package-user-dir (expand-file-name "elpa" goblin-dir))
+;; (package-initialize)
+
+;; (require 'cl-lib)
+;; (require 'package)
+
+;; ;;;; Package setup and additional utility functions
+
+;; ;; accessing a package repo over https on Windows is a no go, so we
+;; ;; fallback to http there
+;; (if (eq system-type 'windows-nt)
+;;     (add-to-list 'package-archives
+;;                  '("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/" ) t)
+;;     (add-to-list 'package-archives
+;;                  '("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/" ) t)
+;;     (add-to-list 'package-archives
+;;                  '("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/" ) t))
+ ;   (add-to-list 'package-archives
+               ;'("melpa" . "https://melpa.org/packages/") t))
+
+;; load the pinned packages
+;; (let ((goblin-pinned-packages-file (expand-file-name "goblin-pinned-packages.el" goblin-dir)))
+;;   (if (file-exists-p goblin-pinned-packages-file)
+;;       (load goblin-pinned-packages-file)))
+
+;; set package-user-dir to be relative to goblin install path
+
+
+
+
 (require 'package)
 
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
-(add-to-list 'package-archives '("ELPA" . "http://tromey.com/elpa/") t)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;;; Install into separate package dirs for each Emacs version, to prevent bytecode incompatibility
+;; (setq package-user-dir (expand-file-name *emacs-package-user-dir* user-emacs-directory))
 
-;; set package-user-dir to be relative to Goblin install path
+;;; Standard package repositories
+;; Internet repositories for new packages.
+(setq package-archives '(("gnu"    . "http://elpa.gnu.org/packages/")
+                         ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+                         ("melpa"  . "http://melpa.org/packages/")
+                         ("melpa-stable" . "http://stable.melpa.org/packages/")))
+
+;; Initialize packages
+(unless (bound-and-true-p package--initialized) ; To avoid warnings in 27
+  (setq package-enable-at-startup nil)          ; To prevent initializing twice
+  (package-initialize))
+
+;; ================ Setup use-package start ===========================
+
+;; (unless (package-installed-p 'use-package)
+;;   (package-refresh-contents)
+;;   (package-install 'use-package))
+
+;; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.2")
+(setq package-signature nil)
+
 (setq package-user-dir (expand-file-name "elpa" goblin-dir))
-(package-initialize)
+;; (package-initialize)
+
+;; install & enable use-package
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(require 'use-package)
+(setq use-package-verbose t)
 
 (defvar goblin-packages
   '(sr-speedbar
     diminish
     browse-kill-ring
-    projectile
+    ;; projectile
+    avy
     undo-tree
-    auto-complete
-    helm
+    hl-todo
+    diff-hl
+    operate-on-number
+    smartparens
+    volatile-highlights
+    solarized-theme
+    highlight-parentheses
+    posframe
+    yasnippet
+    yasnippet-snippets
+    markdown-mode
+    ;; eglot
+    ;; auto-complete
+    ;; helm
     php-mode
-    web-mode
-    python-mode
-    nginx-mode
-    ac-slime
-    slime
-    org
-    rust-mode
-    racer
-    flycheck
-    flycheck-rust
-    cargo
-    company
-    company-racer
-    company-php
-    company-web
-    company-restclient
-    elpy
-    company-web
-    ac-php
-    rustfmt
-    let-alist
+    ;; web-mode
+    ;; python-mode
+    ;; nginx-mode
+    ;; ac-slime
+    ;; slime
+    ;; org
+    ;; rust-mode
+    ;; racer
+    ;; flycheck
+    ;; flycheck-rust
+    ;; cargo
+    ;; company
+    ;; company-racer
+    ;; company-php
+    ;; company-web
+    ;; company-restclient
+    ;; elpy
+    ;; company-web
+    ;; ac-php
+    ;; rustfmt
+    ;; let-alist
     )
   "A list of packages to ensure are installed at launch.")
 
 (defun goblin-packages-installed-p ()
   "Check if all packages in `goblin-packages' are installed."
-  (every #'package-installed-p goblin-packages))
+  (cl-every #'package-installed-p goblin-packages))
 
 (defun goblin-require-package (package)
   "Install PACKAGE unless already installed."
@@ -86,7 +163,7 @@
 Missing packages are installed automatically."
   (mapc #'goblin-require-package packages))
 
-(define-obsolete-function-alias 'goblin-ensure-module-deps 'goblin-require-packages)
+;(define-obsolete-function-alias 'goblin-ensure-module-deps 'goblin-require-packages)
 
 (defun goblin-install-packages ()
   "Install all packages listed in `goblin-packages'."
@@ -109,7 +186,7 @@ are installed and are not in `goblin-packages'.  Useful for
 removing unwanted packages."
   (interactive)
   (package-show-package-list
-   (set-difference package-activated-list goblin-packages)))
+   (cl-set-difference package-activated-list goblin-packages)))
 
 (defmacro goblin-auto-install (extension package mode)
   "When file with EXTENSION is opened triggers auto-install of PACKAGE.
@@ -121,18 +198,34 @@ PACKAGE is installed only if not already present.  The file is opened in MODE."
                                  (,mode)))))
 
 (defvar goblin-auto-install-alist
-  '(("\\.clj\\'" clojure-mode clojure-mode)
+  '(("\\.adoc\\'" adoc-mode adoc-mode)
+    ("\\.clj\\'" clojure-mode clojure-mode)
+    ("\\.cljc\\'" clojure-mode clojurec-mode)
+    ("\\.cljs\\'" clojure-mode clojurescript-mode)
+    ("\\.edn\\'" clojure-mode clojure-mode)
+    ("\\.cmake\\'" cmake-mode cmake-mode)
+    ("CMakeLists\\.txt\\'" cmake-mode cmake-mode)
     ("\\.coffee\\'" coffee-mode coffee-mode)
     ("\\.css\\'" css-mode css-mode)
     ("\\.csv\\'" csv-mode csv-mode)
+    ("Cask" cask-mode cask-mode)
     ("\\.d\\'" d-mode d-mode)
     ("\\.dart\\'" dart-mode dart-mode)
+    ("\\.elm\\'" elm-mode elm-mode)
+    ("\\.ex\\'" elixir-mode elixir-mode)
+    ("\\.exs\\'" elixir-mode elixir-mode)
+    ("\\.elixir\\'" elixir-mode elixir-mode)
     ("\\.erl\\'" erlang erlang-mode)
     ("\\.feature\\'" feature-mode feature-mode)
     ("\\.go\\'" go-mode go-mode)
+    ("\\.graphql\\'" graphql-mode graphql-mode)
     ("\\.groovy\\'" groovy-mode groovy-mode)
     ("\\.haml\\'" haml-mode haml-mode)
     ("\\.hs\\'" haskell-mode haskell-mode)
+    ("\\.jl\\'" julia-mode julia-mode)
+    ("\\.json\\'" json-mode json-mode)
+    ("\\.kt\\'" kotlin-mode kotlin-mode)
+    ("\\.kv\\'" kivy-mode kivy-mode)
     ("\\.latex\\'" auctex LaTeX-mode)
     ("\\.less\\'" less-css-mode less-css-mode)
     ("\\.lua\\'" lua-mode lua-mode)
@@ -141,19 +234,36 @@ PACKAGE is installed only if not already present.  The file is opened in MODE."
     ("\\.ml\\'" tuareg tuareg-mode)
     ("\\.pp\\'" puppet-mode puppet-mode)
     ("\\.php\\'" php-mode php-mode)
+    ("\\.proto\\'" protobuf-mode protobuf-mode)
+    ("\\.pyd\\'" cython-mode cython-mode)
+    ("\\.pyi\\'" cython-mode cython-mode)
+    ("\\.pyx\\'" cython-mode cython-mode)
     ("PKGBUILD\\'" pkgbuild-mode pkgbuild-mode)
+    ("\\.rkt\\'" racket-mode racket-mode)
+    ("\\.rs\\'" rust-mode rust-mode)
     ("\\.sass\\'" sass-mode sass-mode)
-    ("\\.scala\\'" scala-mode2 scala-mode)
+    ("\\.scala\\'" scala-mode scala-mode)
     ("\\.scss\\'" scss-mode scss-mode)
     ("\\.slim\\'" slim-mode slim-mode)
+    ("\\.styl\\'" stylus-mode stylus-mode)
+    ("\\.swift\\'" swift-mode swift-mode)
     ("\\.textile\\'" textile-mode textile-mode)
-    ("\\.yml\\'" yaml-mode yaml-mode)))
+    ("\\.thrift\\'" thrift thrift-mode)
+    ("\\.yml\\'" yaml-mode yaml-mode)
+    ("\\.yaml\\'" yaml-mode yaml-mode)
+    ("Dockerfile\\'" dockerfile-mode dockerfile-mode)))
 
 ;; markdown-mode doesn't have autoloads for the auto-mode-alist
 ;; so we add them manually if it's already installed
 (when (package-installed-p 'markdown-mode)
   (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
   (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
+
+
+;; same with adoc-mode
+(when (package-installed-p 'adoc-mode)
+  (add-to-list 'auto-mode-alist '("\\.adoc\\'" . adoc-mode))
+  (add-to-list 'auto-mode-alist '("\\.asciidoc\\'" . adoc-mode)))
 
 (when (package-installed-p 'pkgbuild-mode)
   (add-to-list 'auto-mode-alist '("PKGBUILD\\'" . pkgbuild-mode)))

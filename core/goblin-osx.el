@@ -47,5 +47,6 @@ Windows external keyboard from time to time."
 
 (menu-bar-mode +1)
 
+(setq dired-use-ls-dired nil)
 (provide 'goblin-osx)
 ;;; goblin-osx.el ends here

@@ -25,18 +25,29 @@
 ;; Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 ;; 02110-1301  USA
 
-(require 'goblin-helm)
-(require 'goblin-helm-everywhere)
-(require 'goblin-auto-complete)
+;; (require 'goblin-helm)
+;; (require 'goblin-helm-everywhere)
+;; (require 'goblin-auto-complete)
+
+;; (require 'goblin-php)
+;; (require 'goblin-web)
+;; (require 'goblin-python)
+;; (require 'goblin-flymake)
+;; (require 'goblin-doxymacs)
+;; (require 'goblin-vc)
+;; (require 'goblin-org-mode)
+;; (require 'goblin-rust)
+;; (require 'goblin-go)
+
+;; (load "goblin-slime")
+
+(require 'goblin-vertico) ;; A powerful, yet simple, alternative to ivy
+;; (require 'prelude-helm) ;; Interface for narrowing and search
+;; (require 'prelude-helm-everywhere) ;; Enable Helm everywhere
+;; (require 'goblin-company)
 
 (require 'goblin-php)
-(require 'goblin-web)
-(require 'goblin-python)
-(require 'goblin-flymake)
-(require 'goblin-doxymacs)
-(require 'goblin-vc)
-(require 'goblin-org-mode)
-(require 'goblin-rust)
-(require 'goblin-go)
+(require 'goblin-lsp-bridge) 
 
-(load "goblin-slime")
+(provide 'goblin-modules)
+;;; goblin-modules.el ends here
