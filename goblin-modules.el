@@ -47,6 +47,7 @@
 ;; (require 'goblin-company)
 
 (require 'goblin-php)
+(require 'goblin-flutter)
 (require 'goblin-lsp-bridge) 
 
 (provide 'goblin-modules)

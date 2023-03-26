@@ -285,7 +285,10 @@ indent yanked text (with prefix arg don't indent)."
 
 ;; sensible undo
 (global-undo-tree-mode)
- (diminish 'undo-tree-mode)
+(diminish 'undo-tree-mode)
+
+(with-eval-after-load 'undo-tree
+  (setq undo-tree-auto-save-history nil))
 
 ;(require 'iedit)
 
@@ -318,7 +321,7 @@ indent yanked text (with prefix arg don't indent)."
 (global-set-key (kbd "<f2>") (lambda()
                                (interactive)
                                (sr-speedbar-toggle)))
-
+(global-set-key [f8] 'neotree-toggle)
 
 (provide 'goblin-editor)
 

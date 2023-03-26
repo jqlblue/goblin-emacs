@@ -126,6 +126,16 @@
     doom-modeline
     valign
     doom-themes
+    neotree
+    ;; flutter
+    dart-mode
+    lsp-mode
+    lsp-dart
+    lsp-treemacs
+    flycheck
+    company
+    lsp-ui
+    hover
     ;; phpstan
     ;; web-mode
     ;; python-mode
