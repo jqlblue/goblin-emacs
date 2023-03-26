@@ -139,7 +139,7 @@ by Goblin.")
 ;;   (load (expand-file-name "sample/prelude-modules.el" prelude-dir)))
 
 ;; config changes made through the customize UI will be store here
-(setq custom-file (expand-file-name "custom.el" goblin-personal-dir))
+;; (setq custom-file (expand-file-name "custom.el" goblin-personal-dir))
 
 ;; load the personal settings (this includes `custom-file')
 (when (file-exists-p goblin-personal-dir)

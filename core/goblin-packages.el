@@ -61,9 +61,6 @@
 
 ;; set package-user-dir to be relative to goblin install path
 
-
-
-
 (require 'package)
 
 ;;; Install into separate package dirs for each Emacs version, to prevent bytecode incompatibility
@@ -126,6 +123,9 @@
     phpactor
     company-phpactor
     smart-jump
+    doom-modeline
+    valign
+    doom-themes
     ;; phpstan
     ;; web-mode
     ;; python-mode

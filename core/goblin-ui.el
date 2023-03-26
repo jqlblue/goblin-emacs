@@ -30,6 +30,7 @@
 ;; the toolbar is just a waste of valuable screen estate
 ;; in a tty tool-bar-mode does not properly auto-load, and is
 ;; already disabled anyway
+
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
 
@@ -84,9 +85,55 @@
                                           "%b"))))
 
 ;; use solarized as the default theme
-(load-theme 'solarized-dark t)
+;; (load-theme 'solarized-dark t)
 ;; (load-theme 'material t)
 ;(load-theme 'solarized-light t)
+
+
+(setq inhibit-splash-screen t)
+(setq-default cursor-type 'bar)
+
+(setq  initial-frame-alist (quote ((fullscreen . maximized))))
+
+(global-hl-line-mode t)
+
+;; (global-display-line-numbers-mode t)
+(setq frame-title-format
+      `((buffer-file-name "%f" "%b")
+        ,(format " - GNU Emacs %s" emacs-version)))
+
+
+
+(use-package doom-themes
+  :init
+  (if (display-graphic-p)
+      (load-theme 'doom-solarized-light t)
+    (load-theme 'doom-tomorrow-night)))
+
+(set-face-attribute 'default nil :height 150)
+
+(use-package valign
+  :ensure t
+  :hook ((markdown-mode org-mode) . valign-mode))
+
+
+(use-package doom-modeline
+  :ensure t
+  :init
+  (setq doom-modeline-minor-modes t)
+  :custom-face
+  (mode-line ((t (:height 0.95))))
+  (mode-line-inactive ((t (:height 0.95))))
+  :hook (after-init . doom-modeline-mode))
+
+(use-package visual-fill-column
+  :init
+  ;; Configure fill width
+(setq visual-fill-column-width 110
+      visual-fill-column-center-text t))
+
+
+
 
 ;; font
 ;; set font
