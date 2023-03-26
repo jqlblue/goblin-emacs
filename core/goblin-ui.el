@@ -45,6 +45,9 @@
 ;; disable startup screen
 (setq inhibit-startup-screen t)
 
+(setq inhibit-startup-message t) ; Don't show the splash screen
+(setq visible-bell t)            ; Flash when the bell rings
+
 ;; nice scrolling
 (setq scroll-margin 0
       scroll-conservatively 100000

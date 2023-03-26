@@ -28,6 +28,7 @@
 ;;; Code:
 
 (require 'php-mode)
+(require 'phpactor)
 ;(require 'php-doc)
 
 ;; (eval-after-load 'php-mode
@@ -58,6 +59,9 @@
 ;;   (add-hook 'php-mode-hook 'eglot-ensure))
 
 
+
+
+
 ;; (use-package php-mode
 ;;   :defer t)
 ;; (require 'lsp-bridge)
@@ -66,11 +70,50 @@
 
 (with-eval-after-load "php-mode"
   (define-key php-mode-map (kbd "C-.") nil)
+  (define-key php-mode-map (kbd "C-c C--") 'php-current-class)
+  (define-key php-mode-map (kbd "C-c C-=") 'php-current-namespace)
+  (phpactor-smart-jump-register)
   (setq lsp-bridge-php-lsp-server "phpactor")
+  (defvar phpactor-executable "/usr/local/bin/phpactor")
+  (set (make-local-variable 'company-backends)
+       '(;; list of backends
+         company-phpactor
+         company-files
+         ))
 
   (add-hook 'php-mode-hook (lambda ()
                             (lsp-bridge-mode +1)
+                            ;; (php-enable-default-coding-style +1)
+                            ;; (flymake-phpstan-turn-on +1)
+                            ;; (subword-mode 1)
+                            (make-local-variable 'eldoc-documentation-function)
+                            (setq eldoc-documentation-function
+                              'phpactor-hover)
                              (c-toggle-auto-newline 1))))
+
+;; (add-hook 'php-mode-hook 'php-enable-default-coding-style)
+;; (add-hook 'php-mode-hook (lambda () (subword-mode 1)))
+;; (with-eval-after-load 'php-mode
+;;   (define-key php-mode-map (kbd "C-c C--") 'php-current-class)
+;;   (define-key php-mode-map (kbd "C-c C-=") 'php-current-namespace))
+
+;; (add-hook 'php-mode-hook #'flymake-phpstan-turn-on)
+;; (use-package php-mode
+;;   ;;
+;;   :hook ((php-mode . (lambda () (set (make-local-variable 'company-backends)
+;;        '(;; list of backends
+;;          company-phpactor
+;;          company-files
+;;          ))))))
+
+;; (add-hook 'php-mode-hook
+;;           (lambda ()
+;;             (make-local-variable 'eldoc-documentation-function)
+;;             (setq eldoc-documentation-function
+;;                   'phpactor-hover)))
+
+;; (with-eval-after-load 'php-mode
+;;   (phpactor-smart-jump-register))
 ;; (require 'lsp-bridge)
 
 ;; (defun init-php-mode ()

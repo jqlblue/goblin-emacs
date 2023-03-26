@@ -130,6 +130,16 @@
 (global-set-key (kbd "C-x C-M->") 'find-tag)
 (global-set-key (kbd "M-.") (kbd "C-x C-M-> <return>"))
 (global-set-key (kbd "C-x C-g") 'pop-tag-mark)
+
+
+(use-package smart-jump
+  :ensure t
+  :bind (("M-." . smart-jump-go)
+         ("M-," . smart-jump-back)
+         ("M-/" . smart-jump-references)))
+
 (provide 'goblin-global-keybindings)
+
+
 
 ;;; goblin-global-keybindings.el ends here

@@ -123,6 +123,10 @@
     ;; auto-complete
     ;; helm
     php-mode
+    phpactor
+    company-phpactor
+    smart-jump
+    ;; phpstan
     ;; web-mode
     ;; python-mode
     ;; nginx-mode
