@@ -1,4 +1,4 @@
-;;; goblin-modules.el
+;;; goblin-magit.el
 
 ;;; Copyright © 2014 jqlblue <gaoyuan.blue@gmail.com>
 
@@ -14,43 +14,30 @@
 ;; modify it under the terms of the GNU Lesser General Public
 ;; License as published by the Free Software Foundation; either
 ;; version 2.1 of the License, or (at your option) any later version.
-;;
+;; 
 ;; This library is distributed in the hope that it will be useful,
 ;; but WITHOUT ANY WARRANTY; without even the implied warranty of
 ;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 ;; Lesser General Public License for more details.
-;;
+;; 
 ;; You should have received a copy of the GNU Lesser General Public
 ;; License along with this library; if not, write to the Free Software
 ;; Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 ;; 02110-1301  USA
 
-;; (require 'goblin-helm)
-;; (require 'goblin-helm-everywhere)
-;; (require 'goblin-auto-complete)
+;;; Code:
+(use-package magit
+  :if (executable-find "git")
+  :bind
+  (("C-x g" . magit-status)
+   (:map magit-status-mode-map
+         ("M-RET" . magit-diff-visit-file-other-window)))
+  :config
+  (defun magit-log-follow-current-file ()
+    "A wrapper around `magit-log-buffer-file' with `--follow' argument."
+    (interactive)
+    (magit-log-buffer-file t)))
 
-;; (require 'goblin-php)
-;; (require 'goblin-web)
-;; (require 'goblin-python)
-;; (require 'goblin-flymake)
-;; (require 'goblin-doxymacs)
-;; (require 'goblin-vc)
-;; (require 'goblin-org-mode)
-;; (require 'goblin-rust)
-;; (require 'goblin-go)
+(provide 'goblin-magit)
 
-;; (load "goblin-slime")
-
-;; (require 'goblin-vertico) ;; A powerful, yet simple, alternative to ivy
-(require 'goblin-helm) ;; Interface for narrowing and search
-(require 'goblin-helm-everywhere) ;; Enable Helm everywhere
-;; (require 'goblin-company)
-;; (require 'goblin-dired) 
-(require 'goblin-php)
-(require 'goblin-flutter)
-(require 'goblin-lsp-bridge)
-(require 'goblin-magit)
-;; (require 'goblin-projectile) 
-
-(provide 'goblin-modules)
-;;; goblin-modules.el ends here
+;;; goblin-magit.el ends here

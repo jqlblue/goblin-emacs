@@ -138,7 +138,16 @@
     lsp-ui
     hover
     all-the-icons
-    ;; ivy
+    magit
+    ivy
+    projectile
+    js2-mode
+    rjsx-mode
+    typescript-mode
+    less-css-mode
+    scss-mode
+    css-mode
+    web-mode
     ;; phpstan
     ;; web-mode
     ;; python-mode
