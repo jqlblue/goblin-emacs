@@ -176,6 +176,9 @@ Will only occur if goblin-whitespace is also enabled."
 ;; enable erase-buffer command
 (put 'erase-buffer 'disabled nil)
 
+(use-package all-the-icons
+  :if (display-graphic-p))
+
 ;(require 'expand-region)
 
 ;; projectile is a project management mode
@@ -200,10 +203,10 @@ Will only occur if goblin-whitespace is also enabled."
 
 ;; if there is a dired buffer displayed in the next window, use its
 ;; current subdir, instead of the current subdir of this dired buffer
-(setq dired-dwim-target t)
+;; (setq dired-dwim-target t)
 
 ;; enable some really cool extensions like C-x C-j(dired-jump)
-(require 'dired-x)
+;; (require 'dired-x)
 
 ;; ediff - don't start another frame
 (require 'ediff)

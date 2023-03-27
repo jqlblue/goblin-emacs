@@ -137,6 +137,7 @@
     company
     lsp-ui
     hover
+    all-the-icons
     ;; ivy
     ;; phpstan
     ;; web-mode
