@@ -118,7 +118,8 @@
     markdown-mode
     ;; eglot
     ;; auto-complete
-    ;; helm
+    helm
+    helm-projectile
     php-mode
     phpactor
     company-phpactor
@@ -136,6 +137,7 @@
     company
     lsp-ui
     hover
+    ;; ivy
     ;; phpstan
     ;; web-mode
     ;; python-mode

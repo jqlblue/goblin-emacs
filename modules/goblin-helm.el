@@ -30,7 +30,7 @@
 
 (goblin-require-packages '(helm helm-projectile))
 
-(require 'helm-config)
+;; (require 'helm-config)
 (require 'helm-projectile)
 
 (when (executable-find "curl")
@@ -54,6 +54,7 @@
 (define-key helm-command-map (kbd "g")     'helm-do-grep)
 (define-key helm-command-map (kbd "C-c w") 'helm-wikipedia-suggest)
 (define-key helm-command-map (kbd "SPC")   'helm-all-mark-rings)
+(define-key helm-find-files-map (kbd "<backspace>") 'helm-find-files-up-one-level)
 
 (push "Press <C-c p h> to navigate a project in Helm." goblin-tips)
 

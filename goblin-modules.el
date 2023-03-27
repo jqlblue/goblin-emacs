@@ -42,10 +42,10 @@
 ;; (load "goblin-slime")
 
 ;; (require 'goblin-vertico) ;; A powerful, yet simple, alternative to ivy
-;; (require 'prelude-helm) ;; Interface for narrowing and search
-;; (require 'prelude-helm-everywhere) ;; Enable Helm everywhere
+(require 'goblin-helm) ;; Interface for narrowing and search
+(require 'goblin-helm-everywhere) ;; Enable Helm everywhere
 ;; (require 'goblin-company)
-
+;; (require 'goblin-dired) 
 (require 'goblin-php)
 (require 'goblin-flutter)
 (require 'goblin-lsp-bridge) 
