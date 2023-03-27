@@ -67,6 +67,21 @@
 
 ;; (add-hook 'dart-mode-hook 'lsp)
 
+(with-eval-after-load 'dart-mode
+  (defun goblin-dart-mode-defaults ()
+
+    (setq dap-launch-configuration-providers  '(dap-debug-template-configurations-provider))
+
+    ;; Add to default dart-mode key bindings
+    (lsp-dart-define-key "s o" #'lsp-dart-show-outline)
+    (lsp-dart-define-key "s f" #'lsp-dart-show-flutter-outline)）
+    ;; (dap-dart-setup))
+
+  (setq goblin-dart-mode-hook 'goblin-dart-mode-defaults)
+
+  (add-hook 'dart-mode-hook (lambda ()
+                            (run-hooks 'goblin-dart-mode-hook)))))
+
 (setq gc-cons-threshold (* 100 1024 1024)
       read-process-output-max (* 1024 1024))
 

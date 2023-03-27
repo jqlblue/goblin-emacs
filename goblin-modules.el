@@ -41,7 +41,7 @@
 
 ;; (load "goblin-slime")
 
-(require 'goblin-vertico) ;; A powerful, yet simple, alternative to ivy
+;; (require 'goblin-vertico) ;; A powerful, yet simple, alternative to ivy
 ;; (require 'prelude-helm) ;; Interface for narrowing and search
 ;; (require 'prelude-helm-everywhere) ;; Enable Helm everywhere
 ;; (require 'goblin-company)
