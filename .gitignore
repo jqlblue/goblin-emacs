@@ -8,3 +8,4 @@ projectile-bookmarks.eld
 recentf
 tmp/
 .lsp-session-v1
+lsp-cache/

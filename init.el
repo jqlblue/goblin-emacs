@@ -238,6 +238,7 @@ by Goblin.")
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(lsp-phpactor-path "/Users/gaoyuan/.emacs.d/extensions/lsp-server/phpactor")
  '(package-selected-packages
    '(json-mode neotree yasnippet-snippets volatile-highlights visual-fill-column vertico valign use-package undo-tree sr-speedbar solarized-theme smartparens smart-jump posframe phpstan orderless operate-on-number markdown-mode hl-todo highlight-parentheses doom-themes doom-modeline diminish diff-hl dart-mode consult company-phpactor browse-kill-ring avy)))
 (custom-set-faces

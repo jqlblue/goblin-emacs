@@ -116,7 +116,7 @@
     yasnippet
     yasnippet-snippets
     markdown-mode
-    ;; eglot
+    eglot
     ;; auto-complete
     helm
     helm-projectile
