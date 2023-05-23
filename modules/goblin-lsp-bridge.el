@@ -73,7 +73,12 @@
 ;;   (setq lsp-bridge-php-lsp-server  "phpactor")
 ;;   (add-hook 'php-mode-hook #'init-php-mode))
 
+(defun init-php-mode ()
+  (lsp-bridge-mode +1))
 
+(with-eval-after-load 'php-mode
+  (custom-set-variables '(lsp-bridge-php-lsp-server  "/usr/local/bin/phpactor"))
+  (add-hook 'php-mode-hook #'init-php-mode))
 
 (setq acm-enable-icon t
 	  acm-enable-tabnine nil

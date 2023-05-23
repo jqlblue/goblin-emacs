@@ -36,7 +36,7 @@
 
 (with-eval-after-load 'php-mode
   ;; If phpactor command is not installed as global, remove next ;; and write the full path
-  (custom-set-variables '(lsp-phpactor-path "/Users/gaoyuan/.emacs.d/extensions/lsp-server/phpactor"))
+  (custom-set-variables '(lsp-phpactor-path "/usr/local/bin/phpactor"))
   (add-hook 'php-mode-hook #'init-php-mode))
 
 (provide 'goblin-eglot)

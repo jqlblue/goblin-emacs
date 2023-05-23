@@ -46,9 +46,10 @@
 (require 'goblin-helm-everywhere) ;; Enable Helm everywhere
 ;; (require 'goblin-company)
 ;; (require 'goblin-dired) 
-(require 'goblin-lsp)
+;; (require 'goblin-lsp-bridge)
 (require 'goblin-php)
-(require 'goblin-flutter)
+;; (require 'goblin-eglot)
+;; (require 'goblin-flutter)
 
 (require 'goblin-magit)
 ;; (require 'goblin-projectile) 
