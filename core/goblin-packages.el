@@ -148,6 +148,8 @@
     scss-mode
     css-mode
     web-mode
+    ;;
+    which-key
     ;; phpstan
     ;; web-mode
     ;; python-mode

@@ -28,42 +28,80 @@
 ;;; Code:
 
 (require 'php-mode)
-(require 'phpactor)
-
-(use-package phpactor :ensure t)
-(use-package company-phpactor :ensure t)
-
-(use-package php-mode
-  ;;
-  :hook ((php-mode . (lambda () (set (make-local-variable 'company-backends)
-       '(;; list of backends
-         company-phpactor
-         company-files
-         ))))))
+;; (require 'phpactor)
 
 (defun init-php-mode ()
-  (eglot-ensure))
+  (lsp-deferred))
 
-(add-hook 'php-mode-hook 'eglot-ensure)
+;; (with-eval-after-load 'lsp-mode
+;;   (add-to-list 'lsp-language-id-configuration
+;;     '(php-mode . "phpactor"))
 
-;;   (add-hook 'php-mode-hook #'init-php-mode))
+;;   (lsp-register-client
+;;     (make-lsp-client :new-connection (lsp-stdio-connection "phpactor")
+;;                      :activation-fn (lsp-activate-on "php")
+;;                      :server-id 'phpactor)))
+
+
+;; (use-package phpactor :ensure t)
+;; (use-package company-phpactor :ensure t)
+
+;; (use-package php-mode
+;;   ;;
+;;   :hook ((php-mode . (lambda () (set (make-local-variable 'company-backends)
+;;        '(;; list of backends
+;;          company-phpactor
+;;          company-files
+;;          ))))))
+
+;; (defun init-php-mode ()
+;;   (eglot-ensure))
+
+;; (add-hook 'php-mode-hook 'eglot-ensure)
+;; (defun init-php-mode ()
+;;   (lsp-deferred))
+
+;; (which-key-mode)
+;; ;; (add-hook 'php-mode-hook 'lsp)
+
+;; (setq gc-cons-threshold (* 100 1024 1024)
+;;       read-process-output-max (* 1024 1024)
+;;       treemacs-space-between-root-nodes nil
+;;       company-idle-delay 0.0
+;;       company-minimum-prefix-length 1
+;;       lsp-idle-delay 0.1)  ;; clangd is fast
+
+;; (with-eval-after-load 'lsp-mode
+;;   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
+;;   ;; (require 'dap-php)
+;;   (yas-global-mode))
+
+
+
+;; (add-hook 'php-mode-hook #'init-php-mode))
 
 ;; (with-eval-after-load 'php-mode
 ;;   ;; If phpactor command is not installed as global, remove next ;; and write the full path
 ;;   (custom-set-variables '(lsp-phpactor-path "/usr/local/bin/phpactor"))
 ;;   (add-hook 'php-mode-hook #'init-php-mode))
   
-(add-hook 'php-mode-hook
-          (lambda ()
-            (make-local-variable 'eldoc-documentation-function)
-            (setq eldoc-documentation-function
-                  'phpactor-hover)))
 
-(with-eval-after-load 'php-mode
-  (custom-set-variables '(lsp-phpactor-path "/usr/local/bin/phpactor"))
-  (add-hook 'php-mode-hook #'init-php-mode)
-  ;; (add-to-list 'eglot-stay-out-of 'eldoc)
-  (phpactor-smart-jump-register))
+;; (add-hook 'php-mode-hook
+;;           (lambda ()
+;;             (make-local-variable 'eldoc-documentation-function)
+;;             (setq eldoc-documentation-function
+;;                   'phpactor-hover)))
+
+;; (with-eval-after-load 'php-mode
+;;   (custom-set-variables '(lsp-phpactor-path "/usr/local/bin/phpactor"))
+;;   (add-hook 'php-mode-hook #'init-php-mode)
+;;   ;; (add-to-list 'eglot-stay-out-of 'eldoc)
+;;   (phpactor-smart-jump-register))
+
+
+
+
+
 
   ;; (with-eval-after-load "eglot"
   ;; (add-to-list 'eglot-server-programs '(php-mode "intelephense" "--stdio"))
@@ -130,29 +168,34 @@
 ;;                               'phpactor-hover)
 ;;                              (c-toggle-auto-newline 1))))
 
-(add-hook 'php-mode-hook 'php-enable-default-coding-style)
-(add-hook 'php-mode-hook (lambda () (subword-mode 1)))
-(with-eval-after-load 'php-mode
-  (define-key php-mode-map (kbd "C-c C--") 'php-current-class)
-  (define-key php-mode-map (kbd "C-c C-=") 'php-current-namespace))
 
-;; (add-hook 'php-mode-hook #'flymake-phpstan-turn-on)
-(use-package php-mode
-  ;;
-  :hook ((php-mode . (lambda () (set (make-local-variable 'company-backends)
-       '(;; list of backends
-         company-phpactor
-         company-files
-         ))))))
+;; (add-hook 'php-mode-hook 'php-enable-default-coding-style)
+;; (add-hook 'php-mode-hook (lambda () (subword-mode 1)))
+;; (with-eval-after-load 'php-mode
+;;   (define-key php-mode-map (kbd "C-c C--") 'php-current-class)
+;;   (define-key php-mode-map (kbd "C-c C-=") 'php-current-namespace))
 
-(add-hook 'php-mode-hook
-          (lambda ()
-            (make-local-variable 'eldoc-documentation-function)
-            (setq eldoc-documentation-function
-                  'phpactor-hover)))
+;; ;; (add-hook 'php-mode-hook #'flymake-phpstan-turn-on)
+;; (use-package php-mode
+;;   ;;
+;;   :hook ((php-mode . (lambda () (set (make-local-variable 'company-backends)
+;;        '(;; list of backends
+;;          company-phpactor
+;;          company-files
+;;          ))))))
 
-(with-eval-after-load 'php-mode
-  (phpactor-smart-jump-register))
+;; (add-hook 'php-mode-hook
+;;           (lambda ()
+;;             (make-local-variable 'eldoc-documentation-function)
+;;             (setq eldoc-documentation-function
+;;                   'phpactor-hover)))
+
+;; (with-eval-after-load 'php-mode
+;;   (phpactor-smart-jump-register))
+
+
+
+
 ;; (require 'lsp-bridge)
 
 ;; (defun init-php-mode ()
