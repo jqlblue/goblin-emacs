@@ -241,7 +241,7 @@ by Goblin.")
  '(lsp-clients-php-server-command "/usr/local/bin/phpactor")
  '(lsp-phpactor-path "/Users/gaoyuan/.emacs.d/extensions/lsp-server/phpactor")
  '(package-selected-packages
-   '(lsp-mode flatbuffers-mode json-mode neotree yasnippet-snippets volatile-highlights visual-fill-column vertico valign use-package undo-tree sr-speedbar solarized-theme smartparens smart-jump posframe phpstan orderless operate-on-number markdown-mode hl-todo highlight-parentheses doom-themes doom-modeline diminish diff-hl dart-mode consult company-phpactor browse-kill-ring avy)))
+   '(lsp-mode flatbuffers-mode json-mode neotree yasnippet-snippets volatile-highlights  vertico valign use-package undo-tree sr-speedbar solarized-theme smartparens smart-jump posframe phpstan orderless operate-on-number markdown-mode hl-todo highlight-parentheses doom-themes doom-modeline diminish diff-hl dart-mode consult company-phpactor browse-kill-ring avy)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

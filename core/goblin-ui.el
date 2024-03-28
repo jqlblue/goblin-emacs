@@ -126,11 +126,11 @@
   (mode-line-inactive ((t (:height 0.95))))
   :hook (after-init . doom-modeline-mode))
 
-(use-package visual-fill-column
-  :init
-  ;; Configure fill width
-(setq visual-fill-column-width 110
-      visual-fill-column-center-text t))
+;(use-package visual-fill-column
+;  :init
+;  ;; Configure fill width
+;(setq visual-fill-column-width 110
+;      visual-fill-column-center-text t))
 
 
 
